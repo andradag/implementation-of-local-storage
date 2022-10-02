@@ -56,7 +56,7 @@ const onSubmit = function (event) {
 
   // clean up the input element and get the text content and remove any white spaces hello
 
-  const todoText = todoInput.Value.trim();
+  const todoText = todoInput.value.trim();
 
   if (todoText === "") {
     return;
@@ -75,14 +75,12 @@ const onSubmit = function (event) {
   renderTodos(todos);
 };
 
-getDataFromLocalStorage();
-
 const onLoad = function () {
   // get todos data from Local Storage
   const todos = getDataFromLocalStorage();
 
   // render todo list
-  renderTodos();
+  renderTodos(todos);
 };
 
 const onClick = function (event) {
