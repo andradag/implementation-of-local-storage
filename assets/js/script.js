@@ -10,7 +10,31 @@ const renderTodos = function () {
   // clear the todo list
   todoList.innerHTML = "";
 
+  // set the count of todo items
   todoCountSpan.textContent = todos.length;
+
+  for (let i = 0; i < todos.length; i++) {
+    // get the todo item
+    const todo = todos[i];
+
+    // construct the li element
+    const li = document.createElement("li");
+
+    // set the text content of li
+    li.testContent = todo;
+
+    // set attributes of li
+    li.setAttribute("data-index", i);
+
+    // construct a button element
+    const button = document.createElement("button");
+
+    // set the text of the button element
+    button.textContent = "Complete ✓";
+
+    li.appendChild(button);
+    todoList.appendChild(li);
+  }
 };
 
 const getDataFromLocalStorage = function () {
