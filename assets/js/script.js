@@ -6,7 +6,12 @@ const todoCountSpan = document.querySelector("#todo-count");
 
 const todos = [];
 
-function renderToodos() {}
+const renderTodos = function () {
+  // clear the todo list
+  todoList.innerHTML = "";
+
+  todoCountSpan.textContent = todos.length;
+};
 
 const getDataFromLocalStorage = function () {
   // get "todos" from Local Storage
