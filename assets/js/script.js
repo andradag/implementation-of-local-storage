@@ -41,9 +41,9 @@ const getDataFromLocalStorage = function () {
 
   // check if not null
   if (!dataFromLocalStorage) {
-    return dataFromLocalStorage;
-  } else {
     return [];
+  } else {
+    return dataFromLocalStorage;
   }
 };
 
