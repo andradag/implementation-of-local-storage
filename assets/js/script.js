@@ -49,9 +49,35 @@ const getDataFromLocalStorage = function () {
   }
 };
 
-function storeTodos() {}
+function storeTodos(todos) {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
 
-todoForm.addEventListener("submit", function (event) {});
+const onSubmit = function (event) {
+  event.preventDefault();
+
+  // clean up the input element and get the text content and remove any white spaces hello
+
+  const todoText = todoInput.Value.trim();
+
+  if (todoText === "") {
+    return;
+  }
+
+  // if not empty then get todos from Local Storage
+  const todos = getDataFromLocalStorage();
+
+  // push new todo item to array
+  todos.push(todoText);
+
+  // rest the input from value
+  todoInput.value = "";
+
+  storeTodos();
+  renderTodos();
+};
+
+todoForm.addEventListener("submit", onSubmit);
 
 todoList.addEventListener("click", function (event) {});
 
