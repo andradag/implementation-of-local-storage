@@ -8,9 +8,16 @@ const todos = [];
 
 function renderToodos() {}
 
-const init = function () {
+const getDataFromLocalStorage = function () {
   // get "todos" from Local Storage
-  var storedTodos = JSON.parse(localStorage.getItem("todos"));
+  const dataFromLocalStorage = JSON.parse(localStorage.getItem("todos"));
+
+  // check if not null
+  if (!dataFromLocalStorage) {
+    return dataFromLocalStorage;
+  } else {
+    return [];
+  }
 };
 
 function storeTodos() {}
@@ -19,4 +26,14 @@ todoForm.addEventListener("submit", function (event) {});
 
 todoList.addEventListener("click", function (event) {});
 
-init();
+getDataFromLocalStorage();
+
+const onLoad = function () {
+  // get todos data from Local Storage
+  const todos = getDataFromLocalStorage();
+
+  // render todo list
+  renderTodos();
+};
+
+window.addEventListener("load", onLoad);
