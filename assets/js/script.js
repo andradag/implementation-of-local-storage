@@ -4,9 +4,7 @@ const todoForm = document.querySelector("#todo-form");
 const todoList = document.querySelector("#todo-list");
 const todoCountSpan = document.querySelector("#todo-count");
 
-const todos = [];
-
-const renderTodos = function () {
+const renderTodos = function (todos) {
   // clear the todo list
   todoList.innerHTML = "";
 
@@ -49,9 +47,9 @@ const getDataFromLocalStorage = function () {
   }
 };
 
-function storeTodos(todos) {
+const storeTodos = function (todos) {
   localStorage.setItem("todos", JSON.stringify(todos));
-}
+};
 
 const onSubmit = function (event) {
   event.preventDefault();
@@ -73,13 +71,9 @@ const onSubmit = function (event) {
   // rest the input from value
   todoInput.value = "";
 
-  storeTodos();
-  renderTodos();
+  storeTodos(todos);
+  renderTodos(todos);
 };
-
-todoForm.addEventListener("submit", onSubmit);
-
-todoList.addEventListener("click", function (event) {});
 
 getDataFromLocalStorage();
 
@@ -91,4 +85,22 @@ const onLoad = function () {
   renderTodos();
 };
 
+const onClick = function (event) {
+  const element = event.target;
+
+  // check if click event originated from a button
+  if (element.matches("button")) {
+    // get index value from data attribute of data-index
+    const index = element.parentElement.getAttribute("data-index");
+    const todos = getDataFromLocalStorage();
+    todos.splice(index, 1);
+
+    storeTodos(todos);
+    renderTodos(todos);
+  }
+};
+
+// add event listeners
 window.addEventListener("load", onLoad);
+todoForm.addEventListener("submit", onSubmit);
+todoList.addEventListener("click", onClick);
